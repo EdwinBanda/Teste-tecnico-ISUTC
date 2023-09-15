@@ -1,0 +1,14 @@
+.formulario{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline;
+    border: none;
+    background-color: gray;
+    border-radius: 20px;
+    padding: 20px;
+    width: 40%;
+    height: 60%;
+    text-align: center;
+}

@@ -5,6 +5,8 @@ const handlebars = require('express-handlebars')
 const bodyparser = require('body-parser')
 const info = require('./database/tab')
 
+app.use(express.static('public'))
+
 app.engine('handlebars', handlebars.engine({ defaultLayout: "main" }))
 app.set('view engine', 'handlebars')
 
@@ -12,14 +14,21 @@ app.use(bodyparser.urlencoded({ extended: true }))
 app.use(bodyparser.json())
 
 app.get('/form', (req, res) => {
-    res.render('formulario')
+    res.render('formulario', {
+        style: 'form.css',
+        title: 'Formulario'
+    })
 })
 
 app.get('/', (req, res) => {
     info.findAll({ order: [["id", "ASC"]] })
         .then((registro) => {
             // console.log(registro)
-            res.render('informacao', { registro: registro })
+            res.render('informacao', {
+                registro: registro,
+                style: 'info.css',
+                title: 'Informacao'
+            })
         })
         .catch((error) => {
             res.send("Erro " + error)
